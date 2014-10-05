@@ -7,8 +7,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}"
 
 include(GNUInstallDirs)
 
-foreach(arch i686 x86_64)
-  set(cmd "archlinuxcn-${arch}-build")
+function(install_build_script cmd)
   add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/cmds/${cmd}"
     COMMAND "${CMAKE_COMMAND}" -E make_directory
     "${CMAKE_CURRENT_BINARY_DIR}/cmds"
@@ -16,9 +15,13 @@ foreach(arch i686 x86_64)
     "${CMAKE_CURRENT_BINARY_DIR}/cmds/${cmd}")
   add_custom_target(${cmd}.target ALL
     DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/cmds/${cmd}")
-endforeach()
+endfunction()
+
+install_build_script(archlinuxcn-i686-build)
+install_build_script(archlinuxcn-x86_64-build)
+install_build_script(multilib-archlinuxcn-build)
 
 install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/cmds/"
   DESTINATION "${CMAKE_INSTALL_BINDIR}")
-install(FILES "pacman-archlinuxcn.conf"
+install(FILES "pacman-archlinuxcn.conf" "pacman-multilib-archlinuxcn.conf"
   DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/devtools/")
