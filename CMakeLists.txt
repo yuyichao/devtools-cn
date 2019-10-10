@@ -19,9 +19,17 @@ endfunction()
 
 install_build_script(archlinuxcn-i686-build)
 install_build_script(archlinuxcn-x86_64-build)
+install_build_script(archlinuxcn-testing-x86_64-build)
+install_build_script(archlinuxcn-staging-x86_64-build)
+install_build_script(archlinuxcn-kde-unstable-x86_64-build)
 install_build_script(multilib-archlinuxcn-build)
 
 install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/cmds/"
   DESTINATION "${CMAKE_INSTALL_BINDIR}")
-install(FILES "pacman-archlinuxcn.conf" "pacman-multilib-archlinuxcn.conf"
+install(FILES
+  "pacman-archlinuxcn.conf"
+  "pacman-archlinuxcn-testing.conf"
+  "pacman-archlinuxcn-staging.conf"
+  "pacman-archlinuxcn-kde-unstable.conf"
+  "pacman-multilib-archlinuxcn.conf"
   DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/devtools/")
