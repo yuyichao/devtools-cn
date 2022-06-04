@@ -24,8 +24,13 @@ install_build_script(archlinuxcn-staging-x86_64-build)
 install_build_script(archlinuxcn-kde-unstable-x86_64-build)
 install_build_script(multilib-archlinuxcn-build)
 
-foreach(ARM_ARCH arm armv6h armv7h aarch64)
-  install_build_script("archlinuxcn-${ARM_ARCH}-build")
+foreach(CARCH arm armv6h armv7h aarch64)
+  install_build_script("archlinuxcn-${CARCH}-build")
+  configure_file(pacman-archlinuxcn-arm.conf.in
+    "pacman-archlinuxcn-${CARCH}.conf" @ONLY)
+  install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/pacman-archlinuxcn-${CARCH}.conf"
+    DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/devtools/")
 endforeach()
 
 install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/cmds/"
