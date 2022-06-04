@@ -24,9 +24,8 @@ install_build_script(archlinuxcn-staging-x86_64-build)
 install_build_script(archlinuxcn-kde-unstable-x86_64-build)
 install_build_script(multilib-archlinuxcn-build)
 
-foreach(ARM_ARCH armv7h aarch64)
+foreach(ARM_ARCH arm armv6h armv7h aarch64)
   install_build_script("archlinuxcn-${ARM_ARCH}-build")
-  install_build_script("archlinuxcn-testing-${ARM_ARCH}-build")
 endforeach()
 
 install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/cmds/"
