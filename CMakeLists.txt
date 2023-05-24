@@ -26,19 +26,19 @@ install_build_script(multilib-archlinuxcn-build)
 
 foreach(CARCH arm armv6h armv7h aarch64)
   install_build_script("archlinuxcn-${CARCH}-build")
-  configure_file(pacman-archlinuxcn-arm.conf.in
-    "pacman-archlinuxcn-${CARCH}.conf" @ONLY)
+  configure_file(archlinuxcn-arm.conf.in
+    "archlinuxcn-${CARCH}.conf" @ONLY)
   install(FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/pacman-archlinuxcn-${CARCH}.conf"
-    DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/devtools/")
+    "${CMAKE_CURRENT_BINARY_DIR}/archlinuxcn-${CARCH}.conf"
+    DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/devtools/pacman.conf.d")
 endforeach()
 
 install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/cmds/"
   DESTINATION "${CMAKE_INSTALL_BINDIR}")
 install(FILES
-  "pacman-archlinuxcn.conf"
-  "pacman-archlinuxcn-testing.conf"
-  "pacman-archlinuxcn-staging.conf"
-  "pacman-archlinuxcn-kde-unstable.conf"
-  "pacman-multilib-archlinuxcn.conf"
-  DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/devtools/")
+  "archlinuxcn.conf"
+  "archlinuxcn-testing.conf"
+  "archlinuxcn-staging.conf"
+  "archlinuxcn-kde-unstable.conf"
+  "multilib-archlinuxcn.conf"
+  DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/devtools/pacman.conf.d/")
